@@ -12,6 +12,5 @@ const options = {
     console.log(selectedDates[0]);
   },
 };
-
 inputDate.addEventListener('click', flatpickr);
 flatpickr(element, {});

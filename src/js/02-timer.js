@@ -22,6 +22,7 @@ const options = {
       let timerID = null;
       startBtn.addEventListener('click', () => {
         startBtn.setAttribute('disabled', '');
+        // додати дезактивацію onClose(selectedDates)?!
         timerID = setInterval(() => {
           const resultDate = convertMs(selectedDates[0] - Date.now());
           addLeadingZero(resultDate);

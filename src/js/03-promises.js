@@ -4,7 +4,8 @@ const form = document.querySelector('.form');
 form.addEventListener('submit', onClickSubmit);
 
 function onClickSubmit(e) {
-  e.preventDefault();
+  e.prevenconsole.log('hi');
+  console.log('hi');
   // const formElements = e.currentTarget.elements;
   // const delay = formElements.delay.value;
   // const step = formElements.step.value;

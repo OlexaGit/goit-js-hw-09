@@ -1,9 +1,11 @@
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 
-// const inputDate = document.querySelector('#datetime-picker');
-// const inputDate = document.querySelector('input[type="text"]');
 const startBtn = document.querySelector('button[data-start]');
+const daysTimer = document.querySelector('.value[data-days]');
+const hoursTimer = document.querySelector('.value[data-hours]');
+const minutesTimer = document.querySelector('.value[data-minutes]');
+const secondsTimer = document.querySelector('.value[data-seconds]');
 
 startBtn.setAttribute('disabled', '');
 
@@ -22,7 +24,7 @@ const options = {
         startBtn.setAttribute('disabled', '');
         timerID = setInterval(() => {
           const resultDate = convertMs(selectedDates[0] - Date.now());
-          console.log(resultDate);
+          addLeadingZero(resultDate);
           if (
             resultDate.days === 0 &&
             resultDate.hours === 0 &&
@@ -57,4 +59,12 @@ function convertMs(ms) {
   const seconds = Math.floor((((ms % day) % hour) % minute) / second);
 
   return { days, hours, minutes, seconds };
+}
+
+function addLeadingZero({ days, hours, minutes, seconds }) {
+  // console.log(days, hours, minutes, seconds);
+  daysTimer.textContent = days.toString().padStart(2, '0');
+  hoursTimer.textContent = hours.toString().padStart(2, '0');
+  minutesTimer.textContent = minutes.toString().padStart(2, '0');
+  secondsTimer.textContent = seconds.toString().padStart(2, '0');
 }

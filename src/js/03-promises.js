@@ -5,39 +5,25 @@ form.addEventListener('submit', onClickSubmit);
 
 function onClickSubmit(e) {
   e.preventDefault();
-  // console.log('hi');
   const formElements = e.currentTarget.elements;
   const delayEl = Number(formElements.delay.value);
   const step = Number(formElements.step.value);
   const amount = Number(formElements.amount.value);
-  // console.log('delay:', delay);
-  // console.log('step:', step);
-  // console.log(amount + 1);
   let delay = delayEl;
-  console.log('delay:', delay);
+  // console.log('delay:', delay);
   for (let i = 1; i < amount + 1; i += 1) {
     createPromise(i, delay)
-      .then(({ position, delay }) => {
-        // console.log('delayCR:', delay);
-        // console.log('position:', position);
-        Notiflix.Notify.success(
-          `✅ Fulfilled promise ${position} in ${delay}ms`
-        );
+      .then(value => {
+        Notiflix.Notify.success(value);
       })
-      .catch(({ position, delay }) => {
-        Notiflix.Notify.warning(
-          `❌ Rejected promise ${position} in ${delay}ms`
-        );
+      .catch(error => {
+        Notiflix.Notify.warning(error);
       });
     delay = delay + step;
-    // console.log('delayEl + step:', delay);
-    // console.log('i:', i);
   }
 }
 
 function createPromise(position, delay) {
-  // console.log('delayCR:', delay);
-  // console.log('position:', position);
   return new Promise((resolve, reject) => {
     const shouldResolve = Math.random() > 0.3;
     setTimeout(() => {
